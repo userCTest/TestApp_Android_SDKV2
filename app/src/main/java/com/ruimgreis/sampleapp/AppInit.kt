@@ -7,7 +7,7 @@ import com.usercentrics.sdk.models.common.UsercentricsLoggerLevel
 
 class AppInit: Application() {
 
-    private var settingsId: String = "ZDQes7xES"// "egLMgjg9j"
+    private var settingsId: String = "tSWIJ-nJ8"//"lrekP5cHl" //"ZDQes7xES", "egLMgjg9j"
 
     override fun onCreate() {
         super.onCreate()
