@@ -50,6 +50,10 @@ class MainActivity : AppCompatActivity() {
         return pInfo.versionName ?: "test"
     }
 
+    /*
+     * func used to show the CMP, either with a settingsID or a controllerId (needs refactoring),
+     * maybe using an ID object that contains the id: String and a type: enum {SETTINGS_ID, CONTROLLER_ID}
+     */
     private fun showCMP() {
 
         var controllerID:String? = null
@@ -128,7 +132,7 @@ class MainActivity : AppCompatActivity() {
 
             // Non-TCF Data - if you have services not included in IAB
             val services = data.services
-            //val categories = data.categories
+            val categories = data.categories
             print("IMPLICIT CONSENTS: \n")
             for (service in services) {
                 println("DPS: ${service.dataProcessor} -- Default Consent Status: ${service.defaultConsentStatus}")
