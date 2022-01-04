@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
     private fun showCMP() {
 
         var controllerID:String? = null
-        controllerID = "3022d5669c446e077e046e8de564e0401f2e21687e49da1d982aabf56a6c32fd"
+        controllerID = "f302fe3b1dcdfd7dc8afb00d67d43f04ed629a090e91f418edfb316f37e1ce3e"
 
         println("ControllerID: ${controllerID}.")
 
