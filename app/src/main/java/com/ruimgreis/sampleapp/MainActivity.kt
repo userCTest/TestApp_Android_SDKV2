@@ -2,20 +2,17 @@ package com.ruimgreis.sampleapp
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.contentValuesOf
-import com.usercentrics.sdk.Usercentrics
 import com.usercentrics.sdk.Usercentrics.reset
-import com.usercentrics.sdk.UsercentricsPredefinedUI
-import com.usercentrics.sdk.UsercentricsServiceConsent
 import kotlinx.android.synthetic.main.activity_main.*
-import com.ruimgreis.sampleapp.Init
-import com.usercentrics.sdk.UsercentricsOptions
+import com.ruimgreis.sampleapp.*
+import com.usercentrics.sdk.*
 import com.usercentrics.sdk.models.common.UsercentricsLoggerLevel
 
 class MainActivity : AppCompatActivity() {
 
     private val usercentricsView by lazy { findViewById<UsercentricsPredefinedUI>(R.id.usercentrics_view) }
-    private var settingsId: String = "MZaDnW2Ca"
+    private var controllerID: String? = null
+    private val initUC: Init = Init()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         // btn close app
         btn_reset_cmp.setOnClickListener {
             reset()
-            val initUC = Init().initCMP(applicationContext)
+            initUC.initCMP(applicationContext)
         }
     }
 
@@ -56,51 +53,52 @@ class MainActivity : AppCompatActivity() {
      */
     private fun showCMP() {
 
-        var controllerID:String? = null
-        controllerID = "f302fe3b1dcdfd7dc8afb00d67d43f04ed629a090e91f418edfb316f37e1ce3e"
+        controllerID = "a9d8ef2ffc16bc7c5ae8111dd0d442190371c8f4cf028b1d3218dd92cf7e0fab"
 
         println("ControllerID: ${controllerID}.")
 
         if(controllerID.isNullOrEmpty()) {
-
-            Usercentrics.isReady(
-                { status ->
-                    println("SHOULD SHOW CMP: ${status.shouldShowCMP}.")
-                    getCMPData(null)
-                    usercentricsView.load { userResponse ->
-                        println("Applying the consents.")
-                        //applyConsents(userResponse?.consents)
-                        getCMPData(status.consents)
-                        // Dismiss the CMP - finish your Activity/Fragment, remove the view, and so on
-                        finish()
-
-                    }
-                },
-                { error ->
-                    println("Error on initialization: $error.message")
-                }
-            )
+            launchWithoutControllerID(usercentricsView)
         } else {
-            Usercentrics.instance.restoreUserSession(controllerID!!, { status ->
-                // This callback is equivalent to `isReady`
-                println("SHOULD SHOW CMP FROM CONTROLLERID: ${status.shouldShowCMP}.")
-                getCMPData(null)
-                usercentricsView.load { userResponse ->
-                    println("Applying the consents.")
-                    //applyConsents(userResponse?.consents)
-                    getCMPData(status.consents)
-                    // Dismiss the CMP - finish your Activity/Fragment, remove the view, and so on
-
-                    finish()
-
-                }
-            }, { error ->
-                println("Error on initialization with controllerID: $error.message")
-            })
-
+            launchWithControllerID(controllerID, usercentricsView)
         }
     }
 
+    private fun launchWithoutControllerID(usercentricsView: UsercentricsPredefinedUI) {
+        Usercentrics.isReady(
+            { status ->
+                showView(status, usercentricsView)
+            },
+            { error ->
+                println("Error on initialization: $error.message")
+            }
+        )
+    }
+
+    private fun launchWithControllerID(controllerID: String?, usercentricsView: UsercentricsPredefinedUI) {
+        reset()
+        initUC.initCMP(applicationContext, "egLMgjg9j")
+        Usercentrics.instance.restoreUserSession(controllerID!!, { status ->
+            showView(status, usercentricsView)
+        }, { error ->
+            println("Error on initialization with controllerID: $error.message")
+        })
+    }
+
+    private fun showView(
+        status: UsercentricsReadyStatus,
+        usercentricsView: UsercentricsPredefinedUI
+    ) {
+        println("SHOULD SHOW CMP: ${status.shouldShowCMP}.")
+        getCMPData(null)
+        usercentricsView.load {
+            println("Applying the consents.")
+            //applyConsents(userResponse?.consents)
+            getCMPData(status.consents)
+            // Dismiss the CMP - finish your Activity/Fragment, remove the view, and so on
+            finish()
+        }
+    }
 
     private fun applyConsents(consents: List<UsercentricsServiceConsent>?) {
         if (consents != null) {
@@ -141,7 +139,7 @@ class MainActivity : AppCompatActivity() {
             if(consents.isNullOrEmpty()) {
                 println("CONSENTS: no explicit consents given by user yet!");
             } else {
-                println("EXPLICIT CONSENTS: ${consents}");
+                println("EXPLICIT CONSENTS: $consents");
             }
 
             // TCString"
