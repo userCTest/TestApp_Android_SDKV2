@@ -9,8 +9,19 @@ import com.ruimgreis.sampleapp.Init
 
 class AppInit: Application() {
 
+    /**
+     * SDK
+     */
+
+    val initUC = Init()
+
     override fun onCreate() {
         super.onCreate()
-        val initUC = Init().initCMP(applicationContext)
+
+        /**
+         * calling SDK initialization
+         */
+
+        initUC.initCMP(applicationContext)
     }
 }

@@ -8,11 +8,13 @@ import com.usercentrics.sdk.UsercentricsOptions
 import com.usercentrics.sdk.models.common.UsercentricsLoggerLevel
 
 class Init {
-    //This class can be used (with a huge refactoring) to take into account multiple settingsIds
+    /**
+     * SDK initialization
+     *
+     * This class can be used (with a huge refactoring) to take into account multiple settingsIds
+     */
 
-    //private var settingsId: String = "ZDQes7xES" //"ZDQes7xES", "egLMgjg9j"
-
-    fun initCMP(appContext: Context, settingsId: String = "ZDQes7xES") {
+    fun initCMP(appContext: Context, settingsId: String = SDKDefaults().settingsId) {
         val userOptions = UsercentricsOptions(
             settingsId = settingsId,
             defaultLanguage = "en",
