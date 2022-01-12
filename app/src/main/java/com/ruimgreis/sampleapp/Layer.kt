@@ -6,14 +6,11 @@ import com.usercentrics.sdk.FirstLayerStyleSettings
 import com.usercentrics.sdk.UsercentricsBanner
 import com.usercentrics.sdk.UsercentricsLayout
 
-/**
-    Banner API V2
-    defines settings for this setup
- */
-class Layer {
+    /**
+        Banner API V2
+        defines settings for this setup
+     */
 
-
-    private val utils = Utils()
 
     fun showFirstLayer(context: Context){
         // Applies to First and Second Layer, and overwrites Admin Interface Styling Settings
@@ -40,7 +37,6 @@ class Layer {
         ui.showFirstLayer(layout = UsercentricsLayout.Sheet, settings = firstLayerSettings) {
                 userResponse ->
             // Apply Consent
-            utils.applyConsents(userResponse?.consents)}
+            applyConsents(userResponse?.consents)}
     }
 
-}

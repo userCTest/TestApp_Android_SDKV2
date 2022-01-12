@@ -14,8 +14,8 @@ class SDKDefaults {
 
     fun checkControllerId(): Boolean {
         if (controllerID.isNullOrEmpty()) {
-            return true
             println("ControllerID: ${controllerID}.")
+            return true
         }
         return false
     }

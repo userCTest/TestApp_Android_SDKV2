@@ -9,9 +9,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private val usercentricsView by lazy { findViewById<UsercentricsPredefinedUI>(R.id.usercentrics_view) }
-    private val initUC: Init = Init()
     private val launchView = LaunchView()
-    private val layer = Layer()
     private val defaults = SDKDefaults()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         // btn close app
         btn_reset_cmp.setOnClickListener {
             reset()
-            initUC.initCMP(applicationContext)
+            initCMP(applicationContext)
         }
     }
 
@@ -55,13 +53,13 @@ class MainActivity : AppCompatActivity() {
 
         when {
             defaults.isFirstLayer -> {
-                layer.showFirstLayer(this)
+                showFirstLayer(this)
             }
             defaults.checkControllerId() -> {
                 launchView.launchWithoutControllerID(usercentricsView, this)
             }
             else -> {
-                launchView.launchWithControllerID(defaults.controllerID, usercentricsView, initUC, this)
+                launchView.launchWithControllerID(defaults.controllerID, usercentricsView, this)
             }
         }
     }

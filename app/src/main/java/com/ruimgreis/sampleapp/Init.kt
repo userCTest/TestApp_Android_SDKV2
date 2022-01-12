@@ -7,7 +7,6 @@ import com.usercentrics.sdk.Usercentrics.reset
 import com.usercentrics.sdk.UsercentricsOptions
 import com.usercentrics.sdk.models.common.UsercentricsLoggerLevel
 
-class Init {
     /**
      * SDK initialization
      *
@@ -25,4 +24,3 @@ class Init {
         Usercentrics.initialize(appContext, userOptions)
     }
 
-}

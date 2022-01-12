@@ -3,11 +3,6 @@ package com.ruimgreis.sampleapp
 import com.usercentrics.sdk.Usercentrics
 import com.usercentrics.sdk.UsercentricsServiceConsent
 
-/**
- * Utility class
- */
-
-class Utils {
 
     /**
      * Apply user given consents
@@ -88,4 +83,3 @@ class Utils {
             println("Error on initialization: $error.message")
         })
     }
-}

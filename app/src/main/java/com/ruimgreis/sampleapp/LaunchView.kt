@@ -12,7 +12,6 @@ import com.usercentrics.sdk.*
 
 class LaunchView {
 
-    private val utils = Utils()
     private val defaults = SDKDefaults()
 
     public fun launchWithoutControllerID(usercentricsView: UsercentricsPredefinedUI, appContext: Context) {
@@ -28,9 +27,9 @@ class LaunchView {
 
     public fun launchWithControllerID(controllerID: String?,
                                        usercentricsView: UsercentricsPredefinedUI,
-                                       initUC: Init, appContext: Context) {
+                                       appContext: Context) {
         Usercentrics.reset()
-        initUC.initCMP(appContext, defaults.settingsId)
+        initCMP(appContext, defaults.settingsId)
         Usercentrics.instance.restoreUserSession(controllerID!!, { status ->
             showView(status, usercentricsView, appContext)
         }, { error ->
@@ -48,11 +47,11 @@ class LaunchView {
     ) {
 
         println("SHOULD SHOW CMP: ${status.shouldShowCMP}.")
-        utils.getCMPData(null)
+        getCMPData(null)
         usercentricsView.load {
             println("Applying the consents.")
             //applyConsents(userResponse?.consents)
-            utils.getCMPData(status.consents)
+            getCMPData(status.consents)
         }
     }
 }
