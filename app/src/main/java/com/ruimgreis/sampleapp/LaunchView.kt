@@ -5,6 +5,10 @@ import com.usercentrics.sdk.UsercentricsPredefinedUI
 import com.usercentrics.sdk.UsercentricsReadyStatus
 import android.content.Context
 import com.usercentrics.sdk.*
+import android.app.Activity
+
+
+
 
 /**
  * SDK launching options, with or without controllerID
@@ -52,6 +56,7 @@ class LaunchView {
             println("Applying the consents.")
             //applyConsents(userResponse?.consents)
             getCMPData(status.consents)
+            (appContext as Activity).finish()
         }
     }
 }

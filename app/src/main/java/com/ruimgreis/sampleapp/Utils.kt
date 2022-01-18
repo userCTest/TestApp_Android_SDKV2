@@ -32,15 +32,6 @@ import com.usercentrics.sdk.UsercentricsServiceConsent
             //val settings = data.settings
             //val tcfSettings = settings.tcf2
 
-            // TCF Data
-            val tcfData = Usercentrics.instance.getTCFData()
-            val purposes = tcfData.purposes
-            //val specialPurposes = tcfData.specialPurposes
-            //val features = tcfData.features
-            //val specialFeatures = tcfData.specialFeatures
-            //val stacks = tcfData.stacks
-            val vendors = tcfData.vendors
-
             // Non-TCF Data - if you have services not included in IAB
             val services = data.services
             val categories = data.categories
@@ -55,27 +46,36 @@ import com.usercentrics.sdk.UsercentricsServiceConsent
                 println("EXPLICIT CONSENTS: $consents");
             }
 
-            // TCString"
-            println("-- TCSTRING --")
-            val tcString = Usercentrics.instance.getTCString()
-            println("TCString: $tcString")
+            if(Usercentrics.instance.getTCFData().vendors.isNotEmpty()) {
+                // TCF Data
+                val tcfData = Usercentrics.instance.getTCFData()
+                val purposes = tcfData.purposes
+                //val specialPurposes = tcfData.specialPurposes
+                //val features = tcfData.features
+                //val specialFeatures = tcfData.specialFeatures
+                //val stacks = tcfData.stacks
+                val vendors = tcfData.vendors
 
-            println("-- PURPOSES --")
-            val purposesList = purposes.sortedBy { tcfPurpose -> tcfPurpose.id }
-            for (purpose in purposesList)
-                println("""${purpose.name} - Id: ${purpose.id} - Consent: ${purpose.consent} - Legitimate Interest: ${purpose.legitimateInterestConsent}""")
+                // TCString"
+                println("-- TCSTRING --")
+                val tcString = Usercentrics.instance.getTCString()
+                println("TCString: $tcString")
 
-            println("-- VENDORS WITH CONSENT TRUE--")
-            var vendorsList = vendors.filter { tcfVendor -> tcfVendor.consent == true }
-            vendorsList = vendorsList.sortedBy { tcfVendor -> tcfVendor.id }
+                println("-- PURPOSES --")
+                val purposesList = purposes.sortedBy { tcfPurpose -> tcfPurpose.id }
+                for (purpose in purposesList)
+                    println("""${purpose.name} - Id: ${purpose.id} - Consent: 
+                        |${purpose.consent} - Legitimate Interest: ${purpose.legitimateInterestConsent}""".trimMargin())
 
-            /*for(vendor in vendors) {
-                if(vendor.consent == true)
-                    vendorsList.add(vendor)
-            }*/
+                println("-- NUMBER OF VENDORS: ${vendors.size}")
 
-            for (vendor in vendorsList) {
-                println("${vendor.name} - Id: ${vendor.id}")
+                println("-- VENDORS WITH CONSENT TRUE--")
+                var vendorsList = vendors.filter { tcfVendor -> tcfVendor.consent == true }
+                vendorsList = vendorsList.sortedBy { tcfVendor -> tcfVendor.id }
+
+                for (vendor in vendorsList) {
+                    println("${vendor.name} - Id: ${vendor.id}")
+                }
             }
 
 
