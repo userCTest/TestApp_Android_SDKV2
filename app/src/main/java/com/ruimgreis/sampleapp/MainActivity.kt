@@ -2,37 +2,37 @@ package com.ruimgreis.sampleapp
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.ruimgreis.sampleapp.databinding.ActivityMainBinding
 import com.usercentrics.sdk.Usercentrics.reset
-import com.usercentrics.sdk.UsercentricsPredefinedUI
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val usercentricsView by lazy { findViewById<UsercentricsPredefinedUI>(R.id.usercentrics_view) }
+    private lateinit var binding: ActivityMainBinding
     private val launchView = LaunchView()
     private val defaults = SDKDefaults()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // version input
-        txt_version.text = getVersionName(this)
+        binding.txtVersion.text = getVersionName(this)
 
         // go button input to get settingsId
-        btn_go.setOnClickListener {
+        binding.btnGo.setOnClickListener {
             showCMP()
         }
 
         // btn close app
-        btn_reset_cmp.setOnClickListener {
+        binding.btnResetCmp.setOnClickListener {
             reset()
             initCMP(applicationContext)
         }
     }
 
     override fun onBackPressed() {
-        if (usercentricsView.onBackPressed()) return
+        if (binding.usercentricsView.onBackPressed()) return
         // ...
         super.onBackPressed()
     }
@@ -50,16 +50,17 @@ class MainActivity : AppCompatActivity() {
      * maybe using an ID object that contains the id: String and a type: enum {SETTINGS_ID, CONTROLLER_ID}
      */
     private fun showCMP() {
+        checkConnection(this)
 
         when {
             defaults.isFirstLayer -> {
                 showFirstLayer(this)
             }
             defaults.checkControllerId() -> {
-                launchView.launchWithoutControllerID(usercentricsView, this)
+                launchView.launchWithoutControllerID(binding.usercentricsView, this)
             }
             else -> {
-                launchView.launchWithControllerID(defaults.controllerID, usercentricsView, this)
+                launchView.launchWithControllerID(defaults.controllerID, binding.usercentricsView, this)
             }
         }
     }
