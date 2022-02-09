@@ -5,5 +5,9 @@
     <string name="uc_logo">Usercentrics Logo</string>
     <string name="togglebutton">ToggleButton</string>
     <string name="settings_id">Settings ID</string>
-    <string name="txt_go">Go</string>
+    <string name="txt_full_legacy">Full CMP (Legacy)</string>
+    <string name="txt_full">Full CMP</string>
+    <string name="txt_first_bottom">First Layer Bottom</string>
+    <string name="txt_first_center">First Layer Middle</string>
+    <string name="txt_first_sheet">First Layer Sheet</string>
 </resources>

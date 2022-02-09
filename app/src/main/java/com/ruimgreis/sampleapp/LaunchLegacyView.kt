@@ -14,11 +14,21 @@ import androidx.activity.ComponentActivity
  * SDK launching options, with or without controllerID
  */
 
-class LaunchView {
+class LaunchLegacyView {
 
     private val defaults = SDKDefaults()
 
-    public fun launchWithoutControllerID(usercentricsView: UsercentricsPredefinedUI, appContext: Context) {
+    public fun launch(usercentricsView: UsercentricsPredefinedUI,
+                            appContext: Context) {
+        val controllerId = defaults.controllerID
+
+        when {
+            controllerId.isNullOrEmpty() -> launchWithoutControllerID(usercentricsView, appContext)
+            else -> launchWithControllerID(controllerId, usercentricsView, appContext)
+        }
+    }
+
+    private fun launchWithoutControllerID(usercentricsView: UsercentricsPredefinedUI, appContext: Context) {
         Usercentrics.isReady(
             { status ->
                 showView(status, usercentricsView, appContext)
@@ -29,7 +39,7 @@ class LaunchView {
         )
     }
 
-    public fun launchWithControllerID(controllerID: String?,
+    private fun launchWithControllerID(controllerID: String?,
                                        usercentricsView: UsercentricsPredefinedUI,
                                        appContext: Context) {
         Usercentrics.reset()

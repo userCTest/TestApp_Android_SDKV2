@@ -34,25 +34,72 @@
         <LinearLayout
             android:id="@+id/sts_layout"
             android:layout_width="246dp"
-            android:layout_height="70dp"
+            android:layout_height="198dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="40dp"
             android:layout_marginRight="50dp"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/btn_reset_cmp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/uc_logo">
 
-            <Button
-                android:id="@+id/btn_go"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_first_layer_full"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
                 android:layout_weight="1"
-                android:text="@string/txt_go" />
+                android:text="@string/txt_full"
+                app:layout_constraintBottom_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_first_layer_mid" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_first_layer_bottom"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_weight="1"
+                android:text="@string/txt_first_bottom"
+                app:layout_constraintBottom_toTopOf="@+id/btn_full"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_first_layer_mid" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_first_layer_center"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_weight="1"
+                android:text="@string/txt_first_center"
+                app:layout_constraintBottom_toTopOf="@+id/btn_first_layer_bottom"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_first_layer_sheet" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_first_layer_sheet"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_weight="1"
+                android:text="@string/txt_first_sheet"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_full"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_weight="1"
+                android:text="@string/txt_full_legacy"
+                app:layout_constraintBottom_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="parent" />
 
         </LinearLayout>
 
@@ -61,7 +108,7 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="50dp"
             android:layout_marginBottom="40dp"
             style="@style/Widget.MaterialComponents.Button"
             android:text="@string/btn_reset_cmp"

@@ -7,13 +7,12 @@ class SDKDefaults {
      * example settingsId = "ZDQes7xES", "egLMgjg9j", "hKTmJ4UVL", bqs8rjGq8
      */
 
-    var controllerID: String? = null //"1727720271ab52d129c92f7b9ee5bf792c6d7b90489d9fa6d36de0ffbb83dc1c"
-    var isFirstLayer: Boolean = true
-    var settingsId: String = "bqs8rjGq8"
 
+    val settingsId: String = "bqs8rjGq8"
+    val controllerID: String? = null //"1727720271ab52d129c92f7b9ee5bf792c6d7b90489d9fa6d36de0ffbb83dc1c"
 
-    fun checkControllerId(): Boolean {
-        if (controllerID.isNullOrEmpty()) {
+    fun checkControllerIdPresent(): Boolean {
+        if (!controllerID.isNullOrEmpty()) {
             println("ControllerID: ${controllerID}.")
             return true
         }

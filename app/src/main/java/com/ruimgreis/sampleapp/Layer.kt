@@ -9,7 +9,7 @@ import com.usercentrics.sdk.*
      */
 
 
-    fun showFirstLayer(context: Context){
+    fun showFirstLayer(context: Context, popup: UsercentricsLayout){
         // Applies to First and Second Layer, and overwrites Admin Interface Styling Settings
         val bannerSettings = BannerSettings(
             //font = <UsercentricsFont?>,
@@ -35,7 +35,6 @@ import com.usercentrics.sdk.*
 
         // Create a UsercentricsUserInterface instance
         val ui = UsercentricsBanner(context, bannerSettings)
-        val popup = UsercentricsLayout.Popup(PopupPosition.BOTTOM)
 
         // Show First Layer and handle result
         ui.showFirstLayer(layout = popup, settings = firstLayerSettings) {
