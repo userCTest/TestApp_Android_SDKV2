@@ -56,13 +56,14 @@
 
         </LinearLayout>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_reset_cmp"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="100dp"
             android:layout_marginBottom="40dp"
+            style="@style/Widget.MaterialComponents.Button"
             android:text="@string/btn_reset_cmp"
             app:backgroundTint="#E91E63"
             app:layout_constraintBottom_toBottomOf="parent"

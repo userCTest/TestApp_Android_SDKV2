@@ -1,15 +1,23 @@
 package com.ruimgreis.sampleapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.ruimgreis.sampleapp.databinding.ActivityMainBinding
 import com.usercentrics.sdk.Usercentrics.reset
+import com.usercentrics.sdk.UsercentricsActivityContract
+import com.usercentrics.sdk.UsercentricsUISettings
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val launchView = LaunchView()
     private val defaults = SDKDefaults()
+
+    private val usercentricsActivityLauncher =
+        registerForActivityResult(UsercentricsActivityContract()) { services ->
+            Log.d(MainActivity::class.simpleName, "registerForActivityResult services: $services")
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

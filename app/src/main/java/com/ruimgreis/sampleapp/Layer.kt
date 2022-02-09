@@ -1,12 +1,9 @@
 package com.ruimgreis.sampleapp
 
 import android.content.Context
-import com.usercentrics.sdk.BannerSettings
-import com.usercentrics.sdk.FirstLayerStyleSettings
-import com.usercentrics.sdk.UsercentricsBanner
-import com.usercentrics.sdk.UsercentricsLayout
+import com.usercentrics.sdk.*
 
-    /**
+/**
         Banner API V2
         defines settings for this setup
      */
@@ -19,22 +16,29 @@ import com.usercentrics.sdk.UsercentricsLayout
             //logo = <UsercentricsImage?>
         )
 
+        val bannerImage = HeaderImageSettings.ExtendedLogoSettings(UsercentricsImage.ImageDrawableId(R.drawable.banner))
+        val acceptButton = ButtonSettings(ButtonType.ACCEPT_ALL)
+        val denyButton = ButtonSettings(ButtonType.DENY_ALL)
+        val moreButton = ButtonSettings(ButtonType.MORE)
+        val buttons = listOf<ButtonSettings>(acceptButton, denyButton, moreButton)
+
         // Applies to First Layer, and overwrites General Settings
         val firstLayerSettings = FirstLayerStyleSettings(
-            //logo = <LogoSettings?>,
-            //title = <TitleSettings?>,
-            //message = <MessageSettings?>,
-            //buttons = <List<ButtonSettings>?>,
-            //backgroundColor = <@ColorInt Int?>,
-            cornerRadius = 5
-            //overlayColor = <@ColorInt Int?>,
+            headerImage = bannerImage,
+            title = null,
+            message = null,
+            backgroundColor = null,
+            buttonLayout = ButtonLayout.Column(buttons),
+            overlayColor = null,
+            cornerRadius = null,
         )
 
         // Create a UsercentricsUserInterface instance
         val ui = UsercentricsBanner(context, bannerSettings)
+        val popup = UsercentricsLayout.Popup(PopupPosition.BOTTOM)
 
         // Show First Layer and handle result
-        ui.showFirstLayer(layout = UsercentricsLayout.Sheet, settings = firstLayerSettings) {
+        ui.showFirstLayer(layout = popup, settings = firstLayerSettings) {
                 userResponse ->
             // Apply Consent
             applyConsents(userResponse?.consents)}

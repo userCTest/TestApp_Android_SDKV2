@@ -6,8 +6,8 @@ import com.usercentrics.sdk.UsercentricsReadyStatus
 import android.content.Context
 import com.usercentrics.sdk.*
 import android.app.Activity
-
-
+import android.util.Log
+import androidx.activity.ComponentActivity
 
 
 /**
@@ -49,7 +49,6 @@ class LaunchView {
         usercentricsView: UsercentricsPredefinedUI,
         appContext: Context
     ) {
-
         println("SHOULD SHOW CMP: ${status.shouldShowCMP}.")
         getCMPData(null)
         usercentricsView.load {
@@ -59,4 +58,5 @@ class LaunchView {
             (appContext as Activity).finish()
         }
     }
+
 }
