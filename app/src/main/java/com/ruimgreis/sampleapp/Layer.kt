@@ -16,7 +16,7 @@ import com.usercentrics.sdk.*
             //logo = <UsercentricsImage?>
         )
 
-        val bannerImage = HeaderImageSettings.ExtendedLogoSettings(UsercentricsImage.ImageDrawableId(R.drawable.banner))
+        //val bannerImage = HeaderImageSettings.ExtendedLogoSettings(UsercentricsImage.ImageDrawableId(R.drawable.banner))
         val acceptButton = ButtonSettings(ButtonType.ACCEPT_ALL)
         val denyButton = ButtonSettings(ButtonType.DENY_ALL)
         val moreButton = ButtonSettings(ButtonType.MORE)
@@ -24,11 +24,11 @@ import com.usercentrics.sdk.*
 
         // Applies to First Layer, and overwrites General Settings
         val firstLayerSettings = FirstLayerStyleSettings(
-            headerImage = bannerImage,
+            //headerImage = bannerImage,
             title = null,
             message = null,
             backgroundColor = null,
-            buttonLayout = ButtonLayout.Column(buttons),
+            //buttonLayout = ButtonLayout.Column(buttons),
             overlayColor = null,
             cornerRadius = null,
         )

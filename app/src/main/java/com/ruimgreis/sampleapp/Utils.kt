@@ -65,7 +65,8 @@ import com.usercentrics.sdk.UsercentricsServiceConsent
                 val purposesList = purposes.sortedBy { tcfPurpose -> tcfPurpose.id }
                 for (purpose in purposesList)
                     println("""${purpose.name} - Id: ${purpose.id} - Consent: 
-                        |${purpose.consent} - Legitimate Interest: ${purpose.legitimateInterestConsent}""".trimMargin())
+                        |${purpose.consent} - Legitimate Interest: ${purpose.legitimateInterestConsent}
+                        |Show LI Toggle: ${purpose.showLegitimateInterestToggle}""".trimMargin())
 
                 println("-- NUMBER OF VENDORS: ${vendors.size}")
 

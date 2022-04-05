@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
 
         // launch banner api v2 Full
         binding.btnFirstLayerFull.setOnClickListener {
-            showCMP(UsercentricsLayout.Full)
+            //showCMP(UsercentricsLayout.Full)
         }
 
         // launch banner api v2 Sheet
