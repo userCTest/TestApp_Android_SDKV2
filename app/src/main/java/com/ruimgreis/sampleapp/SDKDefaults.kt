@@ -8,7 +8,7 @@ class SDKDefaults {
      */
 
 
-    val settingsId: String = "hKTmJ4UVL"
+    val settingsId: String = "egLMgjg9j"
     val controllerID: String? = null //"1727720271ab52d129c92f7b9ee5bf792c6d7b90489d9fa6d36de0ffbb83dc1c"
 
     fun checkControllerIdPresent(): Boolean {
